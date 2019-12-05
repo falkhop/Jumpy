@@ -6,7 +6,7 @@ vec = pg.math.Vector2
 
 
 class Spritesheet:
-    # utility class for loading and parsing spritesheets
+    # utility class for loading and parsing the spritesheet
     def __init__(self, filename):
         self.spritesheet = pg.image.load(filename).convert()
 
@@ -139,5 +139,3 @@ class Platform(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
-

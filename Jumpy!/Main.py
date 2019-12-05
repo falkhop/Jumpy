@@ -78,10 +78,11 @@ class Game:
                 for hit in hits:
                     if hit.rect.bottom > lowest.rect.bottom:
                         lowest = hit
-                if self.player.pos.y < lowest.rect.centery:
-                    self.player.pos.y = lowest.rect.top + 1
-                    self.player.vel.y = 0
-                    self.player.jumping = False
+                if self.player.pos.x < lowest.rect.right + 10 and self.player.pos.x > lowest.rect.left - 10:
+                    if self.player.pos.y < lowest.rect.centery:
+                        self.player.pos.y = lowest.rect.top + 1
+                        self.player.vel.y = 0
+                        self.player.jumping = False
 
         # if player reaches top 1/4 of screen
         if self.player.rect.top <= HEIGHT / 4:
