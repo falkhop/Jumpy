@@ -1,8 +1,8 @@
 # Sprite Classes for AoHB
 from settings import *
 import pygame as pg
-vec = pg.math.Vector2
 import random
+vec = pg.math.Vector2
 
 
 class Spritesheet:
@@ -125,6 +125,7 @@ class Player(pg.sprite.Sprite):
         # jumping status
         if self.jumping:
                 self.image = self.jump_frame
+
 
 class Platform(pg.sprite.Sprite):
     def __init__(self, game, x, y,):

@@ -10,7 +10,7 @@ from settings import *
 import time
 from sprites import *
 from os import path
-import os
+
 
 class Game:
     def __init__(self):
@@ -23,7 +23,6 @@ class Game:
         self.running = True
         self.font_name = pg.font.match_font(FONT_NAME)
         self.load_data()
-
 
     def load_data(self):
         # load high score
@@ -41,7 +40,6 @@ class Game:
         self.jump_sound = pg.mixer.Sound(path.join(self.snd_dir, 'Jump2.wav'))
         # load misc
         misc_dir = path.join(self.dir, 'misc')
-
 
     def new(self):
         # start a new game
@@ -154,18 +152,6 @@ class Game:
             print(x)
             time.sleep(SLEEP)
 
-    def instructions(self):
-        self.screen.fill(BLACK)
-        font = pg.font.SysFont("americantypewriter", 16)
-        for n, line in enumerate(instructionsFile):
-            text = font.render(line, 1, WHITE)
-            text_rect = text.get_rect()
-            text_rect.centerx = 100
-            text_rect.centery = n * 25 + 50
-            self.screen.blit(text, text_rect)
-            time.sleep(SLEEP)
-            pg.display.update()
-
     def show_go_screen(self):
         # Game Over/Continue screen
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
@@ -176,7 +162,6 @@ class Game:
         self.draw_text("GAME OVER!", 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Score: " + str(self.score), 20, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Press any key to play again", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
-        # self.instructions()
         if self.score > self.highscore:
             self.highscore = self.score
             self.draw_text("NEW HIGH SCORE!", 20, WHITE, WIDTH / 2, HEIGHT /2 + 40)
@@ -204,6 +189,7 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x,y)
         self.screen.blit(text_surface, text_rect)
+
 
 g = Game()
 g.show_start_screen()

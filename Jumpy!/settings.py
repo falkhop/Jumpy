@@ -5,13 +5,8 @@ HEIGHT = 600
 FPS = 60
 FONT_NAME = 'arial'
 HS_FILE = "highscore.txt"
-SCRT_FILE = 'SIMULATION_REPORT.TXT'
 SPRITESHEET = "spritesheet_jumper.png"
 SLEEP = .5
-
-instructionsFile = [line.strip('\n')
-                        for line in open('SIMULATION_REPORT.txt', 'r').readlines()]
-
 
 # Player Properties
 PLAYER_ACC = 0.5
