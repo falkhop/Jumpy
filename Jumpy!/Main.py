@@ -152,12 +152,6 @@ class Game:
         self.wait_for_key()
         pg.mixer.music.fadeout(500)
 
-    def slow_type(self):
-        secret = open(path.join(self.dir, SCRT_FILE), 'r')
-        for x in secret:
-            print(x)
-            time.sleep(SLEEP)
-
     def show_go_screen(self):
         # Game Over/Continue screen
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
