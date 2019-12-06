@@ -7,7 +7,6 @@
 import pygame as pg
 import random
 from settings import *
-import time
 from sprites import *
 from os import path
 
@@ -144,6 +143,10 @@ class Game:
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
         pg.mixer.music.play(loops=-1)
         self.screen.fill(BGCOLOR)
+        fslogo = pg.image.load("img/falconshark-white.png")
+        fslogo = pg.transform.scale(fslogo, (30 * 3, 30 * 3))
+        logo = fslogo
+        self.screen.blit(logo, (390, 520))
         self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
@@ -159,6 +162,7 @@ class Game:
         if not self.running:
             return
         self.screen.fill(BGCOLOR)
+        self.screen.blit(logo, (40, 40))
         self.draw_text("GAME OVER!", 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Score: " + str(self.score), 20, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Press any key to play again", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)

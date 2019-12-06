@@ -6,6 +6,7 @@ FPS = 60
 FONT_NAME = 'comicsansms'
 HS_FILE = "highscore.txt"
 SPRITESHEET = "spritesheet_jumper.png"
+LOGO = "falconshark.png"
 SLEEP = .5
 
 # Player Properties
