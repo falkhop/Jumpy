@@ -162,7 +162,6 @@ class Game:
         if not self.running:
             return
         self.screen.fill(BGCOLOR)
-        self.screen.blit(logo, (40, 40))
         self.draw_text("GAME OVER!", 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Score: " + str(self.score), 20, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Press any key to play again", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
