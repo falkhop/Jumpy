@@ -44,7 +44,7 @@ class Game:
     def new(self):
         # start a new game
         self.score = 0
-        self.all_sprites = pg.sprite.Group()
+        self.all_sprites = pg.sprite.LayeredUpdates()
         self.platforms = pg.sprite.Group()
         self.powerups = pg.sprite.Group()
         self.mobs = pg.sprite.Group()
@@ -76,6 +76,10 @@ class Game:
         if now - self.mob_timer > MOB_FREQ + random.choice([-1000, -500, 0, 500, 1000]):
             self.mob_timer = now
             Mob(self)
+        # hit mobs?
+        mob_hits = pg.sprite.spritecollide(self.player, self.mobs, False)
+        if mob_hits:
+            self.playing = False
 
         # check if player hits a platform - only if falling
         if self.player.vel.y > 0:
@@ -143,7 +147,6 @@ class Game:
         # Game Loop Draw
         self.screen.fill(BGCOLOR)
         self.all_sprites.draw(self.screen)
-        self.screen.blit(self.player.image, self.player.rect)
         # Scoreboard
         self.draw_text(str(self.score), 22, WHITE, WIDTH/2, 15)
         # after drawing everything, flip the display
@@ -159,13 +162,15 @@ class Game:
         game_logo = jumpy_logo
         self.screen.blit(game_logo, (105, 40))
         fslogo = pg.image.load("img/falconshark-white.png")
-        fslogo = pg.transform.scale(fslogo, (30 * 3, 30 * 3))
+        fslogo = pg.transform.scale(fslogo, (30 * 2, 30 * 2))
         logo = fslogo
-        self.screen.blit(logo, (390, 520))
+        self.screen.blit(logo, (420, 550))
+        jump_bunny = pg.image.load("img/PNG/Players/bunny1_jump.png")
+        self.screen.blit(jump_bunny, (159, 200))
         #self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
-        self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 6 / 8)
+        self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
+        self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
+        self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
         pg.display.flip()
         self.wait_for_key()
         pg.mixer.music.fadeout(500)
