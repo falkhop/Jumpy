@@ -47,10 +47,12 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.powerups = pg.sprite.Group()
+        self.mobs = pg.sprite.Group()
         self.player = Player(self)
         # add in the platforms
         for plat in PLATFORM_LIST:
             Platform(self, *plat)
+        self.mob_timer = 0
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
         self.run()
 
@@ -68,6 +70,13 @@ class Game:
     def update(self):
         # Game Loop Update
         self.all_sprites.update()
+
+        # spawn a mob?
+        now = pg.time.get_ticks()
+        if now - self.mob_timer > MOB_FREQ + random.choice([-1000, -500, 0, 500, 1000]):
+            self.mob_timer = now
+            Mob(self)
+
         # check if player hits a platform - only if falling
         if self.player.vel.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
@@ -85,6 +94,8 @@ class Game:
         # if player reaches top 1/4 of screen
         if self.player.rect.top <= HEIGHT / 4:
             self.player.pos.y += max(abs(self.player.vel.y), 2.5)
+            for mob in self.mobs:
+                mob.rect.y += max(abs(self.player.vel.y), 2.5)
             for plat in self.platforms:
                 plat.rect.y += max(abs(self.player.vel.y), 2.5)
                 if plat.rect.top >= HEIGHT:

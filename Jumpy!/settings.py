@@ -17,6 +17,7 @@ PLAYER_JUMP = 20
 # Game Properties
 BOOST_POWER = 60
 POW_SPAWN_PCT = 9
+MOB_FREQ = 5000
 
 # Starting Platforms
 PLATFORM_LIST = [(0, HEIGHT-60),
