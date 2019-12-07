@@ -160,13 +160,13 @@ class Game:
         jumpy_logo = pg.image.load("img/Jumpy.png")
         jumpy_logo = pg.transform.scale(jumpy_logo, (30 * 9, 30 * 9))
         game_logo = jumpy_logo
-        self.screen.blit(game_logo, (105, 40))
+        self.screen.blit(game_logo, (110, 40))
         fslogo = pg.image.load("img/falconshark-white.png")
         fslogo = pg.transform.scale(fslogo, (30 * 2, 30 * 2))
         logo = fslogo
         self.screen.blit(logo, (420, 550))
         jump_bunny = pg.image.load("img/PNG/Players/bunny1_jump.png")
-        self.screen.blit(jump_bunny, (159, 200))
+        self.screen.blit(jump_bunny, (165, 200))
         #self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
         self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
@@ -183,15 +183,19 @@ class Game:
             return
         self.screen.fill(BGCOLOR)
         self.draw_text("GAME OVER!", 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        self.draw_text("Score: " + str(self.score), 20, WHITE, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Press any key to play again", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
+        self.draw_text("Score: " + str(self.score), 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
+        self.draw_text("Press any key to play again", 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
         if self.score > self.highscore:
             self.highscore = self.score
-            self.draw_text("NEW HIGH SCORE!", 20, WHITE, WIDTH / 2, HEIGHT /2 + 40)
+            jump_bunny = pg.image.load("img/PNG/Players/bunny1_jump.png")
+            self.screen.blit(jump_bunny, (165, 210))
+            self.draw_text("NEW HIGH SCORE!", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
             with open(path.join(self.dir, HS_FILE), 'w') as f:
                 f.write(str(self.score))
         else:
-            self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT /2 + 40)
+            self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
+            jump_bunny = pg.image.load("img/PNG/Players/bunny1_hurt.png")
+            self.screen.blit(jump_bunny, (165, 210))
         pg.display.flip()
         self.wait_for_key()
 
