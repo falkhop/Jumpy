@@ -127,6 +127,7 @@ class Player(pg.sprite.Sprite):
         # jumping status
         if self.jumping:
                 self.image = self.jump_frame
+        self.mask = pg.mask.from_surface(self.image)
 
 
 class Platform(pg.sprite.Sprite):
@@ -198,6 +199,7 @@ class Mob(pg.sprite.Sprite):
         else:
             self.image = self.image_down
         self.rect = self.image.get_rect()
+        self.mask = pg.mask.from_surface(self.image)
         self.rect.center = center
         self.rect.y += self.vy
         if self.rect.left > WIDTH + 100 or self.rect.right < -100:
