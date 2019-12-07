@@ -143,11 +143,15 @@ class Game:
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
         pg.mixer.music.play(loops=-1)
         self.screen.fill(BGCOLOR)
+        jumpy_logo = pg.image.load("img/Jumpy.png")
+        jumpy_logo = pg.transform.scale(jumpy_logo, (30 * 9, 30 * 9))
+        game_logo = jumpy_logo
+        self.screen.blit(game_logo, (105, 40))
         fslogo = pg.image.load("img/falconshark-white.png")
         fslogo = pg.transform.scale(fslogo, (30 * 3, 30 * 3))
         logo = fslogo
         self.screen.blit(logo, (390, 520))
-        self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
+        #self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 8)
         self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 6 / 8)
