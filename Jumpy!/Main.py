@@ -34,6 +34,10 @@ class Game:
                 self.highscore = 0
         # load spritesheet image
         self.spritesheet = Spritesheet(path.join(img_dir, SPRITESHEET))
+        # cloud images
+        self.cloud_images = []
+        for i in range(1, 4):
+            self.cloud_images.append(pg.image.load(path.join(img_dir, 'cloud{}.png'.format(i))).convert())
         # load sounds
         self.snd_dir = path.join(self.dir, 'snd')
         self.jump_sound = pg.mixer.Sound(path.join(self.snd_dir, 'Jump2.wav'))
@@ -47,6 +51,7 @@ class Game:
         self.all_sprites = pg.sprite.LayeredUpdates()
         self.platforms = pg.sprite.Group()
         self.powerups = pg.sprite.Group()
+        self.clouds = pg.sprite.Group()
         self.mobs = pg.sprite.Group()
         self.player = Player(self)
         # add in the platforms
@@ -54,6 +59,9 @@ class Game:
             Platform(self, *plat)
         self.mob_timer = 0
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
+        for i in range(4):
+            c = Cloud(self)
+            c.rect.y += 300
         self.run()
 
     def run(self):
@@ -97,7 +105,11 @@ class Game:
 
         # if player reaches top 1/4 of screen
         if self.player.rect.top <= HEIGHT / 4:
+            if random.randrange(100) < 9:
+                Cloud(self)
             self.player.pos.y += max(abs(self.player.vel.y), 2.5)
+            for cloud in self.clouds:
+                cloud.rect.y += max(abs(self.player.vel.y / 2), 2)
             for mob in self.mobs:
                 mob.rect.y += max(abs(self.player.vel.y), 2.5)
             for plat in self.platforms:
@@ -169,7 +181,6 @@ class Game:
         self.screen.blit(jump_bunny, (165, 200))
         ground_img = pg.image.load("img/PNG/Environment/ground_grass.png")
         self.screen.blit(ground_img, (50, 470))
-        #self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
         self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
         self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
         self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
