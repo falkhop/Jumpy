@@ -199,7 +199,8 @@ class Game:
         self.screen.blit(bunny1, (75, 200))
         bunny2 = pg.image.load("img/PNG/Players/bunny2_stand.png")
         self.screen.blit(bunny2, (275, 200))
-        self.draw_text("Press 1 for brown or 2 for pink!", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
+        pg.draw.rect(self.screen, YELLOW, (84, 425, 102, 40))
+        pg.draw.rect(self.screen, YELLOW, (284, 425, 102, 40))
         pg.display.flip()
         self.wait_for_key()
         # while True:

@@ -39,7 +39,7 @@ class Player(pg.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def load_images(self):
-        self.bunny1 = False
+        self.bunny1 = True
         if self.bunny1:
             # brown bunny frames
             self.standing_frames = [self.game.spritesheet.get_image(614, 1063, 120, 191),
@@ -136,7 +136,7 @@ class Player(pg.sprite.Sprite):
             self.jumping = True
         else:
             self.jumping = False
-        # jumping status
+        # jumping animation
         if self.jumping:
                 self.image = self.jump_frame
         self.mask = pg.mask.from_surface(self.image)
