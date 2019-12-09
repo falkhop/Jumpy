@@ -2,7 +2,7 @@
 # Jumpy! (a platform game)
 # Art from Kenney.nl
 # Happy Tune by https://opengameart.org/content/happy-tune
-# Acrostics bu Cityfires
+# Acrostics by Cityfires
 
 import pygame as pg
 import random
@@ -228,7 +228,7 @@ class Game:
         font = pg.font.Font(self.font_name, size)
         text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()
-        text_rect.midtop = (x,y)
+        text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
 
 

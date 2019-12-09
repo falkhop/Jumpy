@@ -39,18 +39,33 @@ class Player(pg.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def load_images(self):
-        self.standing_frames = [self.game.spritesheet.get_image(614, 1063, 120, 191),
-                                self.game.spritesheet.get_image(690, 406, 120, 201)]
-        for frame in self.standing_frames:
-            frame.set_colorkey(BLACK)
-        self.walk_frames_r = [self.game.spritesheet.get_image(678, 860, 120, 201),
-                              self.game.spritesheet.get_image(692, 1458, 120, 207)]
-        self.walk_frames_l = []
-        for frame in self.walk_frames_r:
-            frame.set_colorkey(BLACK)
-            self.walk_frames_l.append(pg.transform.flip(frame, True, False))
-        self.jump_frame = self.game.spritesheet.get_image(382, 763, 150, 181)
-        self.jump_frame.set_colorkey(BLACK)
+        self.bunny1 = False
+        if self.bunny1:
+            self.standing_frames = [self.game.spritesheet.get_image(614, 1063, 120, 191),
+                                    self.game.spritesheet.get_image(690, 406, 120, 201)]
+            for frame in self.standing_frames:
+                frame.set_colorkey(BLACK)
+            self.walk_frames_r = [self.game.spritesheet.get_image(678, 860, 120, 201),
+                                  self.game.spritesheet.get_image(692, 1458, 120, 207)]
+            self.walk_frames_l = []
+            for frame in self.walk_frames_r:
+                frame.set_colorkey(BLACK)
+                self.walk_frames_l.append(pg.transform.flip(frame, True, False))
+            self.jump_frame = self.game.spritesheet.get_image(382, 763, 150, 181)
+            self.jump_frame.set_colorkey(BLACK)
+        else:
+            self.standing_frames = [self.game.spritesheet.get_image(581, 1265, 121, 191),
+                                    self.game.spritesheet.get_image(584, 0, 121,201)]
+            for frame in self.standing_frames:
+                frame.set_colorkey(BLACK)
+            self.walk_frames_r = [self.game.spritesheet.get_image(584, 203, 121, 201),
+                                  self.game.spritesheet.get_image(678, 651, 121, 207)]
+            self.walk_frames_l = []
+            for frame in self.walk_frames_r:
+                frame.set_colorkey(BLACK)
+                self.walk_frames_l.append(pg.transform.flip(frame, True, False))
+            self.jump_frame = self.game.spritesheet.get_image(416, 1660, 150, 181)
+            self.jump_frame.set_colorkey(BLACK)
 
     def jump_cut(self):
         if self.jumping:
