@@ -189,6 +189,29 @@ class Game:
         self.wait_for_key()
         pg.mixer.music.fadeout(500)
 
+    def show_character_select_screen(self):
+        # character select screen
+        pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
+        pg.mixer.music.play(loops=-1)
+        self.screen.fill(BGCOLOR)
+        self.draw_text("Pick your Bunny!", 40, WHITE, WIDTH / 2, HEIGHT - 500)
+        bunny1 = pg.image.load("img/PNG/Players/bunny1_stand.png")
+        self.screen.blit(bunny1, (75, 200))
+        bunny2 = pg.image.load("img/PNG/Players/bunny2_stand.png")
+        self.screen.blit(bunny2, (275, 200))
+        self.draw_text("Press 1 for brown or 2 for pink!", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
+        pg.display.flip()
+        self.wait_for_key()
+        # while True:
+        #     for event in pg.event.get():
+        #         if event.type == pg.KEYDOWN:
+        #             if event.key == pg.K_1 or event.key == pg.K_KP1:
+        #                 self.bunny1 = True
+        #                 g.show_start_screen()
+        #             if event.key == pg.K_2 or event.key == pg.K_KP2:
+        #                 self.bunny1 = False
+        #                 g.show_start_screen()
+
     def show_go_screen(self):
         # Game Over/Continue screen
         pg.mixer.music.load(path.join(self.snd_dir, 'happytune.wav'))
@@ -234,6 +257,7 @@ class Game:
 
 g = Game()
 g.show_start_screen()
+#g.show_character_select_screen()
 while g.running:
     g.new()
     g.show_go_screen()
