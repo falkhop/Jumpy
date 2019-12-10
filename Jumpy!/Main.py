@@ -32,7 +32,7 @@ class Game:
                 self.highscore = int(f.read())
             except:
                 self.highscore = 0
-        # load spritesheet image
+        # load sprite sheet image
         self.spritesheet = Spritesheet(path.join(img_dir, SPRITESHEET))
         # cloud images
         self.cloud_images = []
@@ -258,7 +258,7 @@ class Game:
 
 g = Game()
 g.show_start_screen()
-#g.show_character_select_screen()
+# g.show_character_select_screen()
 while g.running:
     g.new()
     g.show_go_screen()

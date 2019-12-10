@@ -6,12 +6,12 @@ vec = pg.math.Vector2
 
 
 class Spritesheet:
-    # utility class for loading and parsing the spritesheet
+    # utility class for loading and parsing the sprite sheet
     def __init__(self, filename):
         self.spritesheet = pg.image.load(filename).convert()
 
     def get_image(self, x, y, width, height):
-        # grabs image out of a spritesheet
+        # grabs image out of a sprite sheet
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
         image = pg.transform.scale(image, (width // 2, height // 2))
@@ -21,6 +21,7 @@ class Spritesheet:
 class Player(pg.sprite.Sprite):
     def __init__(self, game):
         self._layer = PLAYER_LAYER
+        self.bunny1 = True
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -34,12 +35,11 @@ class Player(pg.sprite.Sprite):
         self.rect.center = (WIDTH/2, HEIGHT/2)
         self.vx = 0
         self.vy = 0
-        self.pos = vec(40, HEIGHT -100)
+        self.pos = vec(40, HEIGHT - 100)
         self.vel = vec(0, 0)
         self.acc = vec(0, 0)
 
     def load_images(self):
-        self.bunny1 = True
         if self.bunny1:
             # brown bunny frames
             self.standing_frames = [self.game.spritesheet.get_image(614, 1063, 120, 191),
@@ -138,7 +138,7 @@ class Player(pg.sprite.Sprite):
             self.jumping = False
         # jumping animation
         if self.jumping:
-                self.image = self.jump_frame
+            self.image = self.jump_frame
         self.mask = pg.mask.from_surface(self.image)
 
 
