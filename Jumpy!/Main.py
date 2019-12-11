@@ -181,9 +181,10 @@ class Game:
         self.screen.blit(jump_bunny, (165, 200))
         ground_img = pg.image.load("img/PNG/Environment/ground_grass.png")
         self.screen.blit(ground_img, (50, 470))
-        self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
-        self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
-        self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
+        self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
+        self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
+        self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
+
 
         pg.display.flip()
         self.wait_for_key()
