@@ -125,6 +125,11 @@ class Game:
                 self.boost_sound.play()
                 self.player.vel.y = -BOOST_POWER
                 self.player.jumping = False
+            if PowerUp.type == 'drop':
+                for mob in self.mobs:
+                    mob.vx = 0
+                    mob.vy = MOB_DROP_SPEED
+                    mob.image = mob.image_drop
 
         # DEATH!
         if self.player.rect.bottom > HEIGHT:
@@ -184,7 +189,6 @@ class Game:
         self.draw_text("High Score: " + str(self.highscore), 20, WHITE, WIDTH / 2, HEIGHT / 1.5)
         self.draw_text("Arrows to move, Space to jump!", 20, WHITE, WIDTH / 2, HEIGHT * 5 / 7)
         self.draw_text("Press any key to play", 20, WHITE, WIDTH / 2, HEIGHT * 6 / 7)
-
 
         pg.display.flip()
         self.wait_for_key()
