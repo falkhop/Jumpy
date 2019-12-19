@@ -129,7 +129,8 @@ class Game:
                 for mob in self.mobs:
                     mob.vx = 0
                     mob.vy = MOB_DROP_SPEED
-                    mob.image = mob.image_drop
+                    mob.image_up = mob.image_drop
+                    mob.image_down = mob.image_drop
 
         # DEATH!
         if self.player.rect.bottom > HEIGHT:
