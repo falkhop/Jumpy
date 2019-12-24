@@ -21,10 +21,10 @@ class Spritesheet:
 class Player(pg.sprite.Sprite):
     def __init__(self, game):
         self._layer = PLAYER_LAYER
-        self.bunny1 = True
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
+        self.bunny = False
         self.walking = False
         self.jumping = False
         self.current_frame = 0
@@ -40,7 +40,7 @@ class Player(pg.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def load_images(self):
-        if self.bunny1:
+        if self.bunny is True:
             # brown bunny frames
             self.standing_frames = [self.game.spritesheet.get_image(614, 1063, 120, 191),
                                     self.game.spritesheet.get_image(690, 406, 120, 201)]
@@ -48,7 +48,7 @@ class Player(pg.sprite.Sprite):
                                   self.game.spritesheet.get_image(692, 1458, 120, 207)]
             self.walk_frames_l = []
             self.jump_frame = self.game.spritesheet.get_image(382, 763, 150, 181)
-        else:
+        if self.bunny is False:
             # pink bunny frames
             self.standing_frames = [self.game.spritesheet.get_image(581, 1265, 121, 191),
                                     self.game.spritesheet.get_image(584, 0, 121,201)]

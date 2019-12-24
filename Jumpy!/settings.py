@@ -24,7 +24,7 @@ CLOUD_LAYER = 0
 # Game Properties
 BOOST_POWER = 60
 MOB_DROP_SPEED = 7
-POW_SPAWN_PCT = 9
+POW_SPAWN_PCT = 25
 MOB_FREQ = 5000
 
 # Starting Platforms

@@ -208,16 +208,16 @@ class Game:
         pg.draw.rect(self.screen, YELLOW, (84, 425, 102, 40))
         pg.draw.rect(self.screen, YELLOW, (284, 425, 102, 40))
         pg.display.flip()
-        self.wait_for_key()
-        # while True:
-        #     for event in pg.event.get():
-        #         if event.type == pg.KEYDOWN:
-        #             if event.key == pg.K_1 or event.key == pg.K_KP1:
-        #                 self.bunny1 = True
-        #                 g.show_start_screen()
-        #             if event.key == pg.K_2 or event.key == pg.K_KP2:
-        #                 self.bunny1 = False
-        #                 g.show_start_screen()
+        waiting = True
+        while waiting:
+            for event in pg.event.get():
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_1 or event.key == pg.K_KP1:
+                        Player.bunny = True
+                        waiting = False
+                    if event.key == pg.K_2 or event.key == pg.K_KP2:
+                        Player.bunny = False
+                        waiting = False
 
     def show_go_screen(self):
         # Game Over/Continue screen
@@ -252,7 +252,10 @@ class Game:
                     waiting = False
                     self.running = False
                 if event.type == pg.KEYUP:
-                    waiting = False
+                    if event.key ==pg.K_SPACE:
+                        g.show_character_select_screen()
+                    else:
+                        waiting = False
 
     def draw_text(self, text, size, color, x, y):
         font = pg.font.Font(self.font_name, size)
@@ -264,7 +267,6 @@ class Game:
 
 g = Game()
 g.show_start_screen()
-# g.show_character_select_screen()
 while g.running:
     g.new()
     g.show_go_screen()
